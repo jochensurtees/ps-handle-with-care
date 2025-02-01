@@ -1,0 +1,77 @@
+/* Link to Google Fonts for "Quicksand" font */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
+body {
+    font-family: 'Quicksand', sans-serif; /* Romantic but modern font */
+    background-color: #FFB6C1; /* Keeps your background as is */
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    font-size: 36px; /* Larger font for titles */
+    font-weight: 700; /* Bold weight for titles */
+    margin-bottom: 20px;
+}
+
+.container {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 2px solid black; /* Black border */
+    font-family: 'Quicksand', sans-serif; /* Clean, romantic font for buttons */
+    transition: background-color 0.3s ease;
+    background-color: white; /* White background */
+    color: black; /* Black text */
+}
+
+#startBtn {
+    background-color: white;  /* White background */
+    color: black;  /* Black text */
+    border-color: black;  /* Black border */
+}
+
+#pauseBtn {
+    background-color: white;  /* White background */
+    color: black;  /* Black text */
+    border-color: black;  /* Black border */
+}
+
+#resetBtn {
+    background-color: white;  /* White background */
+    color: black;  /* Black text */
+    border-color: black;  /* Black border */
+}
+
+button:hover {
+    background-color: black;  /* Black background on hover */
+    color: white;  /* White text on hover */
+    border-color: black;  /* Black border on hover */
+}
+
+#timerDisplay {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 20px;
+    color: #333;
+}
+
+#response {
+    font-size: 22px;
+    font-weight: 500;
+    color: #333;
+    margin-top: 20px;
+}
+
+button:disabled {
+    background-color: #dcdcdc; /* Light gray when disabled */
+    color: #9e9e9e; /* Gray text when disabled */
+    cursor: not-allowed; /* Change cursor to indicate it's disabled */
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fokus</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Thinking Time Timer Section -->
+  <div class="container">
+    <h1>hi adela</h1>
+    <h1>Are you free Feb 14th?😎🌹</h1>
+    <p>Need Time to Think?</p>
+    <label for="timeSelect">Select Thinking Time:</label>
+    <select id="timeSelect">
+      <option value="3600">1 Hour</option>
+      <option value="5400">1.5 Hour</option>
+      <option value="7200">2 Hours</option>
+      <option value="10800">3 Hours</option>
+    </select>
+    <button id="startBtn">Start Timer</button>
+    <button id="pauseBtn" disabled>Pause Timer</button>
+    <button id="resetBtn" disabled>Stop Timer</button>
+    <div id="timerDisplay">Time Left: 00:00</div>
+  </div>
+
+  <!-- Yes/No Response Section -->
+  <div class="container">
+    <h2>No need for time to think??</h2>
+    <h3>Select an answer right away :D</h3>
+    <!-- Yes and No buttons -->
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+
+    <p id="response"></p>
+  </div>
+
+  <script>
+    // Timer functionality
+    let timer;
+    let timeRemaining = 0;
+    let isPaused = false;
+    let remainingTimeWhenPaused = 0;
+    const timerDisplay = document.getElementById('timerDisplay');
+    const startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const timeSelect = document.getElementById('timeSelect');
+
+    // Start button click handler
+    startBtn.addEventListener('click', function () {
+      if (timeRemaining === 0) {
+        timeRemaining = parseInt(timeSelect.value);  // Get selected time in seconds
+      }
+
+      // Start or resume the timer
+      if (isPaused) {
+        isPaused = false;
+        timeRemaining = remainingTimeWhenPaused;
+      }
+
+      updateTimerDisplay(); // Update timer display with initial value
+      startTimer();
+    });
+
+    // Pause button click handler
+    pauseBtn.addEventListener('click', function () {
+      clearInterval(timer);
+      isPaused = true;
+      remainingTimeWhenPaused = timeRemaining;  // Save time when paused
+      pauseBtn.disabled = true;
+      startBtn.disabled = false;
+      resetBtn.disabled = false;
+    });
+
+    // Reset button click handler (Stop the timer)
+    resetBtn.addEventListener('click', function () {
+      clearInterval(timer);
+      timeRemaining = 0;
+      updateTimerDisplay(); // Reset the display to 00:00
+      pauseBtn.disabled = true;
+      resetBtn.disabled = true;
+      startBtn.disabled = false;
+    });
+
+    // Function to start the countdown
+    function startTimer() {
+      pauseBtn.disabled = false;
+      startBtn.disabled = true;
+      resetBtn.disabled = false;
+
+      timer = setInterval(function () {
+        if (timeRemaining > 0) {
+          timeRemaining--;
+          updateTimerDisplay();  // Update the display after each second
+        } else {
+          clearInterval(timer); // Stop the timer when it reaches 0
+        }
+      }, 1000);  // Update every 1 second
+    }
+
+    // Function to update the timer display in MM:SS format
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timeRemaining / 60); // Get minutes
+      const seconds = timeRemaining % 60;  // Get remaining seconds
+
+      // Display time as MM:SS
+      timerDisplay.textContent = `Time Left: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    // Yes/No response functionality
+    document.getElementById("yesBtn").addEventListener("click", function() {
+        document.getElementById("response").textContent = "HELL YEAAAAAAA!";
+    });
+
+    document.getElementById("noBtn").addEventListener("click", function() {
+        document.getElementById("response").textContent = "die";
+    });
+  </script>
+</body>
+</html>
